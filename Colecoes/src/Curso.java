@@ -1,6 +1,4 @@
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Curso {
 
@@ -8,6 +6,7 @@ public class Curso {
     private String nome;
     private String instrutor;
     private List<Aula> aulas = new LinkedList<Aula>();
+    private Set<Aluno> alunos = new HashSet<Aluno>();
 
     public Curso(String nome, String instrutor) {
         this.nome = nome;
@@ -26,8 +25,16 @@ public class Curso {
         return Collections.unmodifiableList(aulas);
     }
 
+    public Set<Aluno> getAlunos() {
+        return  Collections.unmodifiableSet(alunos) ;
+    }
+
     public void adiciona(Aula aula){
         this.aulas.add(aula);
+    }
+
+    public void adiciona(Aluno aluno){
+        this.alunos.add(aluno);
     }
 
     public Integer getTempoTotal() {
@@ -41,5 +48,9 @@ public class Curso {
                 ", nome='" + nome + '\'' +
                 ", instrutor='" + instrutor + '\'' +
                 '}';
+    }
+
+    public boolean estaMatriculado(Aluno a1) {
+        return this.getAlunos().contains(a1);
     }
 }
